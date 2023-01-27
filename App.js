@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import React from 'react';
 
+// this app takes in text input and produces an alert with the input text when Submit is pressed.
 export default function App() {
   const [value, onChangeText] = React.useState('')
   var hehehaha = 'haha'
