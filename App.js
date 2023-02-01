@@ -13,7 +13,12 @@ import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import Button from './components/Button';
 
 const firebaseConfig = {
-  
+  apiKey: "AIzaSyB-eKo4OfSpSl_-qlD_B_PlpUM8l3epUKM",
+  authDomain: "mas-prog1.firebaseapp.com",
+  projectId: "mas-prog1",
+  storageBucket: "mas-prog1.appspot.com",
+  messagingSenderId: "996718094",
+  appId: "1:996718094:web:9d7cf1732e1df67e79ae5f"
 };
 
 // Initialize Firebase
@@ -32,7 +37,7 @@ export default function App() {
 
 
   const onLoginPress = () => {
-    alert("You tried to login with " + text)
+    alert("You just tried to login with " + text)
     // try {
     //   const docRef = addDoc(collection(db, "users"), {
     //     username: text
