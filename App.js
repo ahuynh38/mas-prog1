@@ -7,12 +7,13 @@ import { StyleSheet, View, TextInput, Alert, } from 'react-native';
 import React from 'react';
 
 import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 import Button from './components/Button';
 
 const firebaseConfig = {
-  // ask Andy for config details!
+  
 };
 
 // Initialize Firebase
@@ -22,19 +23,23 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
+// Initialize Firebase Authentication and get a reference to the service
+const auth = getAuth(app);
+
 
 export default function App() {
-  const [text, onChangeText] = React.useState("")
+  const [username, onChangeUsername] = React.useState("")
+
 
   const onLoginPress = () => {
     alert("You tried to login with " + text)
-    try {
-      const docRef = addDoc(collection(db, "users"), {
-        username: text
-      });
-    } catch (e) {
-      console.error("Error adding document: ", e)
-    }
+    // try {
+    //   const docRef = addDoc(collection(db, "users"), {
+    //     username: text
+    //   });
+    // } catch (e) {
+    //   console.error("Error adding document: ", e)
+    // }
   }
 
   const onRegisterPress = () => {
@@ -45,9 +50,9 @@ export default function App() {
     <View style={styles.container}>
       <TextInput
         style={styles.textInput}
-        placeholder='Input Text Here'
-        onChangeText={onChangeText}
-        value={text}
+        placeholder='Username'
+        onChangeText={onChangeUsername}
+        value={username}
         />
       <Button
         label="Login"
