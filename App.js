@@ -27,7 +27,7 @@ export default function App() {
   const [text, onChangeText] = React.useState("")
 
   const onLoginPress = () => {
-    alert("You tried to login with " + text)
+    alert("You just tried to login with " + text)
     try {
       const docRef = addDoc(collection(db, "users"), {
         username: text
