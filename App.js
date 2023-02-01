@@ -3,86 +3,23 @@ This app is a "Hello World" basic app that will first allow users to authenticat
 themselves by creating account, then upload strings to the cloud.
 */
 
-import { StyleSheet, View, TextInput, Alert, } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import LandingScreen from './screens/LandingScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
-import Button from './components/Button';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB-eKo4OfSpSl_-qlD_B_PlpUM8l3epUKM",
-  authDomain: "mas-prog1.firebaseapp.com",
-  projectId: "mas-prog1",
-  storageBucket: "mas-prog1.appspot.com",
-  messagingSenderId: "996718094",
-  appId: "1:996718094:web:9d7cf1732e1df67e79ae5f"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
-
-// Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
-
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [username, onChangeUsername] = React.useState("")
-
-
-  const onLoginPress = () => {
-    alert("You just tried to login with " + text)
-    // try {
-    //   const docRef = addDoc(collection(db, "users"), {
-    //     username: text
-    //   });
-    // } catch (e) {
-    //   console.error("Error adding document: ", e)
-    // }
-  }
-
-  const onRegisterPress = () => {
-    alert("You tried to register with " + text)
-  }
-
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.textInput}
-        placeholder='Username'
-        onChangeText={onChangeUsername}
-        value={username}
-        />
-      <Button
-        label="Login"
-        onPress={onLoginPress}
-      />
-      <Button
-        label="Register"
-        onPress={onRegisterPress}
-      />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen name="Login" component={ LandingScreen } />
+        <Stack.Screen name="Register" component={ RegisterScreen } />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#cccccc',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 5,
-  },
-  textInput: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  }
-});
